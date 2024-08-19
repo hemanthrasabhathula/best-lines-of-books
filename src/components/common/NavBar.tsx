@@ -15,23 +15,27 @@ const NavBar = (props: { children: React.ReactNode }) => {
         style={{ backgroundColor: "transparent !important" }}
       >
         <Container>
-          <Navbar.Brand as={Link} to="/">
+          <Navbar.Brand as={Link} to="/best-lines-of-books">
             {`{BLOB}`}{" "}
             <span style={{ fontSize: "0.8rem" }}>BestLinesOfBooks </span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link eventKey={1} as={Link} to="/books">
+              <Nav.Link eventKey={1} as={Link} to="/best-lines-of-books/books">
                 Books
               </Nav.Link>
 
-              <Nav.Link eventKey={3} as={Link} to="/addbook">
+              <Nav.Link
+                eventKey={3}
+                as={Link}
+                to="/best-lines-of-books/addbook"
+              >
                 Add Book
               </Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link eventKey={4} as={Link} to="/about">
+              <Nav.Link eventKey={4} as={Link} to="/best-lines-of-books/about">
                 About
               </Nav.Link>
             </Nav>

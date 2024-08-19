@@ -20,10 +20,13 @@ root.render(
     <BookProvider>
       <NavBar>
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/books" element={<App />} />
-          <Route path="/book/:bookId" element={<BookPage />} />
-          <Route path="/addbook" element={<AddBook />} />
+          <Route path="/best-lines-of-books" element={<App />} />
+          <Route path="/best-lines-of-books/books" element={<App />} />
+          <Route
+            path="/best-lines-of-books/book/:bookId"
+            element={<BookPage />}
+          />
+          <Route path="/best-lines-of-books/addbook" element={<AddBook />} />
         </Routes>
       </NavBar>
     </BookProvider>

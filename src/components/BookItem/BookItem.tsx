@@ -22,7 +22,9 @@ const BookItem = ({ bookslist }: { bookslist: Book[] }) => {
           <div>
             <div
               onClick={() =>
-                navigate(`/book/${book._id.$oid}`, { state: { book } })
+                navigate(`/best-lines-of-books/book/${book._id.$oid}`, {
+                  state: { book },
+                })
               }
             >
               <Image
