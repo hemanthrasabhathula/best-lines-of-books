@@ -198,8 +198,13 @@ const AddBook = () => {
         <Container style={{ paddingTop: "20px", paddingBottom: "20px" }}>
           <BreadcrumbComp active={"Add Book"} />
           <Row className="justify-content-evenly">
-            <Col lg="5" md="5" xs="auto" sm="auto">
+            <Col lg="10" md="10" xs="auto" sm="auto">
               <h3 className="mb-4">Add New Book </h3>
+            </Col>
+          </Row>
+          <Row className="justify-content-evenly">
+            <Col lg="5" md="5" xs="auto" sm="auto">
+              {/* <h3 className="mb-4">Add New Book </h3> */}
               <Form noValidate validated={validated} onSubmit={handleFormData}>
                 <FloatingLabel
                   style={{ paddingLeft: "0" }}
@@ -427,7 +432,6 @@ const AddBook = () => {
               <Row
                 id="image"
                 style={{
-                  height: "380px",
                   width: "100%", // Set a fixed width if needed, e.g., width: "400px"
                   display: "flex",
                   justifyContent: "center",
@@ -450,6 +454,7 @@ const AddBook = () => {
                 </Col>
               </Row>
               <Row
+                className="mt-4"
                 style={{
                   width: "100%",
                   display: "flex",

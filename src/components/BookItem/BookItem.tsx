@@ -9,43 +9,41 @@ const BookItem = ({ bookslist }: { bookslist: Book[] }) => {
   // console.log("BooksList", bookslist);
   return (
     <>
-      <Row>
-        <h2 className="mb-3">All Books</h2>
-        {bookslist.map((book) => (
-          <Col
-            xs={4}
-            sm={4}
-            md={3}
-            lg={2}
-            key={book._id.$oid}
-            className="mt-3 mb-4"
-          >
-            <div>
-              <div
-                onClick={() =>
-                  navigate(`/book/${book._id.$oid}`, { state: { book } })
-                }
-              >
-                <Image
-                  rounded
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    aspectRatio: "2/3",
-                    objectFit: "cover",
-                    cursor: "pointer",
-                  }} // Set width to 100%, height to auto, and aspectRatio to maintain a 2:3 ratio for all images
-                  src={book.image}
-                  alt={book.title}
-                />
-              </div>
-              <div className="mt-2" style={{ textAlign: "center" }}>
-                {book.title}
-              </div>
+      <h2 className="mb-3">All Books</h2>
+      {bookslist.map((book) => (
+        <Col
+          xs={4}
+          sm={4}
+          md={3}
+          lg={2}
+          key={book._id.$oid}
+          className="mt-3 mb-4"
+        >
+          <div>
+            <div
+              onClick={() =>
+                navigate(`/book/${book._id.$oid}`, { state: { book } })
+              }
+            >
+              <Image
+                rounded
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  aspectRatio: "2/3",
+                  objectFit: "cover",
+                  cursor: "pointer",
+                }} // Set width to 100%, height to auto, and aspectRatio to maintain a 2:3 ratio for all images
+                src={book.image}
+                alt={book.title}
+              />
             </div>
-          </Col>
-        ))}
-      </Row>
+            <div className="mt-2" style={{ textAlign: "center" }}>
+              {book.title}
+            </div>
+          </div>
+        </Col>
+      ))}
     </>
   );
 };

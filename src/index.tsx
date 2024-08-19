@@ -21,6 +21,7 @@ root.render(
       <NavBar>
         <Routes>
           <Route path="/" element={<App />} />
+          <Route path="/books" element={<App />} />
           <Route path="/book/:bookId" element={<BookPage />} />
           <Route path="/addbook" element={<AddBook />} />
         </Routes>
