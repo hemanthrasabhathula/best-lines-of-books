@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/best-lines-of-books/static/css/main.b00739ea.css",
+    "main.js": "/best-lines-of-books/static/js/main.2ebb3b85.js",
+    "static/js/453.e9178938.chunk.js": "/best-lines-of-books/static/js/453.e9178938.chunk.js",
+    "static/media/arrow-left-curve.svg": "/best-lines-of-books/static/media/arrow-left-curve.f230b2b973ca1fe1fc63e18d71d5c544.svg",
+    "static/media/arrow-right-curve.svg": "/best-lines-of-books/static/media/arrow-right-curve.bcadcea7572295167acb2067cdd8eb50.svg",
+    "static/media/magic-wand-2.svg": "/best-lines-of-books/static/media/magic-wand-2.3b061d97b58b1b144cf673733aca274a.svg",
+    "index.html": "/best-lines-of-books/index.html",
+    "main.b00739ea.css.map": "/best-lines-of-books/static/css/main.b00739ea.css.map",
+    "main.2ebb3b85.js.map": "/best-lines-of-books/static/js/main.2ebb3b85.js.map",
+    "453.e9178938.chunk.js.map": "/best-lines-of-books/static/js/453.e9178938.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b00739ea.css",
+    "static/js/main.2ebb3b85.js"
+  ]
+}
