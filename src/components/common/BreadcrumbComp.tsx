@@ -6,7 +6,7 @@ const BreadcrumbComp = ({ active }: { active: string }) => {
     <>
       <Breadcrumb>
         <li className="breadcrumb-item">
-          <Link to="/best-lines-of-books" style={{ color: "#2B3035" }}>
+          <Link to="/" style={{ color: "#2B3035" }}>
             {" "}
             Home
           </Link>
