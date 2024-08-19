@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Quotes } from "../../types/Quotes";
 import { generateRandomGradient } from "../../utils/Helper";
-import { fetchQuotesByBookId } from "../../Services/QuotesService";
+import { fetchQuotesByBookId } from "../../services/QuotesService";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import TypingEffect from "../common/TypingEffect";
 import { ReactComponent as RightArrowCurve } from "../../assets/icons/arrow-right-curve.svg";

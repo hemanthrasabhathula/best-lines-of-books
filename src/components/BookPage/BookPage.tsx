@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { fetchBookById } from "../../Services/BookService";
+import { fetchBookById } from "../../services/BookService";
 import { Book } from "../../types/Book";
 import { Col, Container, Fade, Row, Spinner } from "react-bootstrap";
 import BookDetails from "../BookDetails/BookDetails";

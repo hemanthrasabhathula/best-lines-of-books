@@ -3,9 +3,9 @@ import BookSearch from "../BookSearch/BookSearch";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useBookContext } from "../Context/BookContext";
 import { Book } from "../../types/Book";
-import StorageService from "../../Services/StorageService";
+import StorageService from "../../services/StorageService";
 import { BOOKS_LIST } from "../../constants/Constants";
-import { fetchAllBooks } from "../../Services/BookService";
+import { fetchAllBooks } from "../../services/BookService";
 import BookItem from "../BookItem/BookItem";
 
 const Dashboard = () => {

@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { BookContextType } from "../../types/BookContext";
 import { Book } from "../../types/Book";
-import StorageService from "../../Services/StorageService";
+import StorageService from "../../services/StorageService";
 import { BOOKS_LIST } from "../../constants/Constants";
 
 const BookContext = createContext<BookContextType | undefined>(undefined);

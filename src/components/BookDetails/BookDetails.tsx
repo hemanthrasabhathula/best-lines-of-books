@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { fetchBookById } from "../../Services/BookService";
+import { fetchBookById } from "../../services/BookService";
 import { Book } from "../../types/Book";
 import { colors } from "../../constants/Constants";
 import { generateRandomGradient } from "../../utils/Helper";
