@@ -1,0 +1,12 @@
+@media (max-width: 768px) {
+  .container-height {
+    height: auto !important;
+  }
+  .book-details-container {
+    padding-top: 20px;
+  }
+}
+
+.container-height {
+  height: 100dvh;
+}
