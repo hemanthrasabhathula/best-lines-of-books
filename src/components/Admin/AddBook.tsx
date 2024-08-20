@@ -376,13 +376,13 @@ const AddBook = () => {
                   />
                 </FloatingLabel>
                 <Row className="g-2">
-                  <Col md={8} sm={8} xs={8} lg={8}>
+                  <Col lg={8} md={8} sm={7} xs={7}>
                     <Button style={{ width: "100%" }} type="submit">
                       Submit
                     </Button>
                   </Col>
 
-                  <Col md={4} sm={4} xs={4} lg={4}>
+                  <Col lg={4} md={4} sm={5} xs={5}>
                     <Button
                       style={{ width: "100%" }}
                       type="button"
@@ -430,6 +430,7 @@ const AddBook = () => {
 
             <Col lg="4" md="4" xs="auto" sm="auto">
               <Row
+                className="mt-5"
                 id="image"
                 style={{
                   width: "100%", // Set a fixed width if needed, e.g., width: "400px"
