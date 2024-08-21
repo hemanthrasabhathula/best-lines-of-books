@@ -10,25 +10,8 @@ const BookContext = createContext<BookContextType | undefined>(undefined);
 const BookProvider = ({ children }: { children: React.ReactNode }) => {
   const [books, setBooks] = useState<Book[]>([]);
 
-  useEffect(() => {
-    console.log("BookProvider useEffect default fetch");
-
-    if (books.length === 0) {
-      const booksList = StorageService.getBooks(BOOKS_LIST);
-      if (booksList.length !== 0) setBooks(booksList);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (books.length !== 0) StorageService.setItem(BOOKS_LIST, books);
-  }, [books]);
-
-  const addBooks = (book: Book | Book[]) => {
-    if (Array.isArray(book)) {
-      setBooks((prevBooks) => [...prevBooks, ...book]);
-    } else {
-      setBooks((prevBooks) => [...prevBooks, book]);
-    }
+  const addBooks = (books: Book[]) => {
+    setBooks(books);
   };
 
   const clearData = () => {

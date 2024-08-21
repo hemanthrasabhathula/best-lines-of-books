@@ -9,11 +9,12 @@ import { fetchAllBooks } from "../../services/BookService";
 import BookItem from "../BookItem/BookItem";
 import TypingEffect from "../common/TypingEffect";
 import ToastItem from "../common/ToastItem";
+import { useQuery } from "@tanstack/react-query";
 
 const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { books, addBooks } = useBookContext();
-  const [error, setError] = useState<string>("");
+  // const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [toastObject, setToastObject] = useState({
     heading: "",
@@ -40,40 +41,29 @@ const Dashboard = () => {
       .includes(searchTerm.replaceAll(" ", "").toLowerCase())
   );
 
+  const { data, error, isLoading, isFetching, isStale, isFetched, isError } =
+    useQuery({
+      queryKey: ["books"],
+      queryFn: fetchAllBooks,
+      staleTime: 30 * 60 * 1000, //half an hour in ms ,
+    });
+
   useEffect(() => {
-    if (books.length === 0) {
-      if (StorageService.getBooks(BOOKS_LIST).length === 0) {
-        fetchAllBooks()
-          .then((response) => {
-            if (response.status !== 200 || !response.data) {
-              throw Error("Error fetching books");
-            }
-            setError("");
-            setLoading(false);
-            const fetchedBooks = response.data as Book[];
-            addBooks(fetchedBooks);
-          })
-          .catch((error: Error) => {
-            setError(error.message);
-            setLoading(false);
-            setToastObject({
-              heading: "Error",
-              message: "Error Fetching Books.. Please Try again ",
-              variant: "danger",
-            });
-            setShowToast(true);
-            console.log("Error fetching books", error.message);
-          });
-      } else {
-        setError("");
-        setLoading(false);
-        addBooks(StorageService.getBooks(BOOKS_LIST));
-      }
-    } else {
-      setError("");
+    if (isLoading) {
+      setLoading(true);
+    } else if (error) {
+      console.log("Error fetching books", error);
+    } else if (data) {
+      addBooks(data.data);
       setLoading(false);
     }
-  }, []);
+    console.log("Error", error);
+    console.log("isError", isError);
+    console.log("Is data stale?", isStale);
+    console.log("Is data fetched?", isFetched);
+    console.log("Is loading?", isLoading);
+    console.log("Is fetching?", isFetching);
+  }, [isLoading, error, data, isStale, isFetched, isError]);
 
   return (
     <div style={{ background: "#EDF9FC" }}>
@@ -88,7 +78,7 @@ const Dashboard = () => {
               />
             </Row>
 
-            {!loading && !error ? (
+            {!isLoading && isFetched && !isError ? (
               <Row>
                 {" "}
                 <BookItem bookslist={filteredBooks} />{" "}
@@ -104,7 +94,7 @@ const Dashboard = () => {
                 }}
               >
                 <Col lg="auto" md="auto" sm="auto" xs="auto">
-                  {!loading && error ? (
+                  {!isLoading && isError ? (
                     <>
                       <h2 style={{ marginLeft: "10px" }}>
                         Error Fetching Books

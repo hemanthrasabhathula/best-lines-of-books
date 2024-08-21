@@ -7,6 +7,7 @@ import TypingEffect from "../common/TypingEffect";
 import { ReactComponent as RightArrowCurve } from "../../assets/icons/arrow-right-curve.svg";
 import { ReactComponent as LeftArrowCurve } from "../../assets/icons/arrow-left-curve.svg";
 import "./BookQuotes.css";
+import { useQuery } from "@tanstack/react-query";
 
 const BookQuotes = ({ bookId }: { bookId: string }) => {
   const [bookQuotes, setBookQuotes] = useState<Quotes[] | undefined>();
@@ -33,6 +34,13 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
       });
   };
 
+  const { data, error, isLoading, isFetching, isStale, isFetched, isError } =
+    useQuery({
+      queryKey: ["bookQuotes", bookId],
+      queryFn: () => fetchQuotesByBookId(bookId),
+      staleTime: 30 * 60 * 1000, //half an hour in ms ,
+    });
+
   const handleNext = () => {
     if (bookQuotes != undefined && count + 1 > bookQuotes.length - 1) {
       setcount(0);
@@ -52,8 +60,20 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
   };
 
   useEffect(() => {
-    if (bookId) getQuotesFromService(bookId);
-  }, []);
+    // if (bookId) getQuotesFromService(bookId);
+
+    if (data) {
+      const quotes_data = data.data as Quotes[];
+      setBookQuotes(quotes_data);
+      setBookName(quotes_data[0].bookTitle);
+    }
+    console.log("Error", error);
+    console.log("isError", isError);
+    console.log("Is data stale?", isStale);
+    console.log("Is data fetched?", isFetched);
+    console.log("Is loading?", isLoading);
+    console.log("Is fetching?", isFetching);
+  }, [isLoading, error, data, isStale, isFetched, isError]);
 
   return (
     <>

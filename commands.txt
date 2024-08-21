@@ -1,2 +1,4 @@
 npm install react-bootstrap bootstrap
 npm install react-router-dom
+npm install @tanstack/react-query
+npm install lodash.isequal
