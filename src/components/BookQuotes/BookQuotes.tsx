@@ -9,6 +9,13 @@ import { ReactComponent as LeftArrowCurve } from "../../assets/icons/arrow-left-
 import "./BookQuotes.css";
 import { useQuery } from "@tanstack/react-query";
 
+const backgrounds = [
+  "https://images3.alphacoders.com/133/1337500.png",
+  "https://images8.alphacoders.com/136/1363709.png",
+  "https://images6.alphacoders.com/133/1331485.png",
+  "https://images5.alphacoders.com/133/1337542.png",
+  "https://initiate.alphacoders.com/images/197/cropped-1920-1080-197662.jpg",
+];
 const BookQuotes = ({ bookId }: { bookId: string }) => {
   const [bookQuotes, setBookQuotes] = useState<Quotes[] | undefined>();
   const [bookName, setBookName] = useState<string>("");
@@ -41,24 +48,6 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
       staleTime: 30 * 60 * 1000, //half an hour in ms ,
     });
 
-  const handleNext = () => {
-    if (bookQuotes != undefined && count + 1 > bookQuotes.length - 1) {
-      setcount(0);
-    } else {
-      setcount(count + 1);
-    }
-    changeGradient();
-  };
-
-  const handlePrev = () => {
-    if (bookQuotes != undefined && count - 1 < 0) {
-      setcount(bookQuotes.length - 1);
-    } else {
-      setcount(count - 1);
-    }
-    changeGradient();
-  };
-
   useEffect(() => {
     // if (bookId) getQuotesFromService(bookId);
 
@@ -75,15 +64,98 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
     console.log("Is fetching?", isFetching);
   }, [isLoading, error, data, isStale, isFetched, isError]);
 
+  const generateRandomBackground = () => {
+    return backgrounds[Math.floor(Math.random() * backgrounds.length)];
+  };
+
+  const [nextBackground, setNextBackground] = useState<string>(
+    generateRandomBackground()
+  );
+  const [currentBackground, setCurrentBackground] = useState<string>(
+    generateRandomBackground()
+  );
+  useEffect(() => {
+    const img = new Image();
+    img.src = nextBackground;
+  }, [nextBackground]);
+
+  const handleNext = () => {
+    if (backgrounds != undefined && count + 1 > backgrounds.length - 1) {
+      setcount(0);
+    } else {
+      setcount(count + 1);
+    }
+    //changeGradient();
+    const newBackground = generateRandomBackground();
+    const img = new Image();
+    img.src = newBackground;
+    img.onload = () => {
+      setCurrentBackground((prev) =>
+        prev !== newBackground ? newBackground : generateRandomBackground()
+      );
+      setNextBackground(generateRandomBackground());
+    };
+
+    //setBackground(generateRandomBackground());
+  };
+
+  const handlePrev = () => {
+    if (backgrounds != undefined && count - 1 < 0) {
+      setcount(backgrounds.length - 1);
+    } else {
+      setcount(count - 1);
+    }
+    //changeGradient();
+    const newBackground = generateRandomBackground();
+    const img = new Image();
+    img.src = newBackground;
+    img.onload = () => {
+      setCurrentBackground((prev) =>
+        prev !== newBackground ? newBackground : generateRandomBackground()
+      );
+      setNextBackground(generateRandomBackground());
+    };
+    //setBackground(generateRandomBackground());
+  };
   return (
     <>
       {bookQuotes != undefined && bookQuotes.length > 0 ? (
         <div
           className="book-lines-bg"
           style={{
-            background: gradient,
+            position: "relative",
+            overflow: "hidden",
           }}
         >
+          <div
+            className="background-blur"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundImage: `url(${currentBackground})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              transition: "background-image 0.5s",
+              filter: "blur(4px)",
+              zIndex: -2,
+            }}
+          ></div>
+          <div
+            className="black-overlay"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(255, 255, 255, 0.3)", // Semi-transparent black
+              zIndex: -1,
+            }}
+          ></div>
           <Container>
             <Row
               className="justify-content-center mb-5"
