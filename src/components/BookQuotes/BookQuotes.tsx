@@ -80,7 +80,7 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
   }, [nextBackground]);
 
   const handleNext = () => {
-    if (backgrounds != undefined && count + 1 > backgrounds.length - 1) {
+    if (bookQuotes != undefined && count + 1 > bookQuotes.length - 1) {
       setcount(0);
     } else {
       setcount(count + 1);
@@ -100,8 +100,8 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
   };
 
   const handlePrev = () => {
-    if (backgrounds != undefined && count - 1 < 0) {
-      setcount(backgrounds.length - 1);
+    if (bookQuotes != undefined && count - 1 < 0) {
+      setcount(bookQuotes.length - 1);
     } else {
       setcount(count - 1);
     }
