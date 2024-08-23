@@ -10,7 +10,22 @@ import "./BookQuotes.css";
 import { useQuery } from "@tanstack/react-query";
 
 const backgrounds = [
+  "https://artfiles.alphacoders.com/161/161120.png",
+  "https://images4.alphacoders.com/135/1354110.jpeg",
+  "https://images6.alphacoders.com/137/1371030.png",
+  "https://images8.alphacoders.com/134/1341526.png",
+  "https://picfiles.alphacoders.com/272/272298.jpg",
   "https://images3.alphacoders.com/133/1337500.png",
+  "https://images.alphacoders.com/135/1353903.png",
+  "https://picfiles.alphacoders.com/297/297690.jpg",
+  "https://images2.alphacoders.com/958/958074.jpg",
+  "https://images2.alphacoders.com/135/1350128.png",
+  "https://images2.alphacoders.com/485/485874.jpg",
+  "https://picfiles.alphacoders.com/285/285560.jpg",
+  "https://images.alphacoders.com/134/1345265.png",
+  "https://picfiles.alphacoders.com/585/585061.jpg",
+  "https://images7.alphacoders.com/135/1358329.png",
+  "https://images.alphacoders.com/137/1370942.png",
   "https://images8.alphacoders.com/136/1363709.png",
   "https://images6.alphacoders.com/133/1331485.png",
   "https://images5.alphacoders.com/133/1337542.png",
@@ -123,11 +138,17 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
         <div
           className="book-lines-bg"
           style={{
-            position: "relative",
-            overflow: "hidden",
+            // position: "relative",
+            //overflow: "hidden",
+            backgroundImage: `url(${currentBackground})`,
+            backgroundSize: "cover",
+            // backgroundPosition: "center",
+            // backgroundRepeat: "no-repeat",
+            transition: "background-image 0.5s ease-in-out",
+            //filter: "blur(4px)",
           }}
         >
-          <div
+          {/* <div
             className="background-blur"
             style={{
               position: "absolute",
@@ -152,12 +173,12 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: "rgba(255, 255, 255, 0.3)", // Semi-transparent black
+              backgroundColor: "rgba(255, 255, 255, 0.1)", // Semi-transparent black
               zIndex: -1,
             }}
-          ></div>
+          ></div> */}
           <Container>
-            <Row
+            {/* <Row
               className="justify-content-center mb-5"
               style={{ padding: "5px", height: "2rem" }}
             >
@@ -181,31 +202,110 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
                   </i>
                 </div>
               </Col>
-            </Row>
+            </Row> */}
             <Row className="justify-content-center" style={{ padding: "5px" }}>
-              <Card className="card-frost" style={{ width: "34rem" }}>
-                <Card.Body>
-                  <Card.Text
-                    style={{
-                      fontSize: "1.1rem",
-                      fontFamily: "Georgia, serif",
-                      textWrap: "pretty",
-                    }}
-                  >
-                    <i>
-                      " {bookQuotes[count].quote}"
-                      {/* "Some quick example text to build on the card title and make
+              <Col
+                lg="auto"
+                sm="auto"
+                md="auto"
+                xs="auto"
+                className="align-content-center"
+                style={{ maxWidth: "100%" }}
+              >
+                <Card
+                  className="card-frost"
+                  style={{
+                    width: "34rem",
+                    maxWidth: "100%",
+                    alignContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Card.Body>
+                    <Card.Text
+                      style={{
+                        fontSize: "1.3rem",
+                        fontFamily: "sans-serif",
+                        textWrap: "pretty",
+                        minHeight: "1.7rem",
+                        textAlign: "center",
+                        padding: "15px",
+                      }}
+                    >
+                      <i>
+                        <TypingEffect text={bookName}></TypingEffect>
+                      </i>
+                    </Card.Text>
+
+                    <Card.Text
+                      style={{
+                        fontSize: "1.1rem",
+                        fontFamily: "Georgia, serif",
+                        textWrap: "pretty",
+                        minHeight: "5rem",
+                      }}
+                    >
+                      <i>
+                        " {bookQuotes[count].quote}"
+                        {/* "Some quick example text to build on the card title and make
                   up the bulk of the card's content." */}
-                    </i>
-                  </Card.Text>
-                  <Card.Text style={{ textAlign: "end", fontSize: "12px" }}>
-                    {`Page ${bookQuotes[count].page} | Chapter ${bookQuotes[count].chapter}`}
-                  </Card.Text>
-                  {/* <Button >Change Background</Button> */}
-                </Card.Body>
-              </Card>
+                      </i>
+                    </Card.Text>
+                    <Card.Text style={{ textAlign: "end", fontSize: "12px" }}>
+                      {`Page ${bookQuotes[count].page} | Chapter ${bookQuotes[count].chapter}`}
+                    </Card.Text>
+                    {/* <Button >Change Background</Button> */}
+
+                    <Card.Text style={{ textAlign: "center" }}>
+                      <Button
+                        variant="dark"
+                        onClick={handlePrev}
+                        style={{
+                          borderRadius: "50%",
+                          border: "none",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          width: "40px",
+                          height: "40px",
+                          padding: "0",
+                          margin: "0",
+                          marginRight: "12px",
+                          background: "transparent",
+                        }}
+                      >
+                        <LeftArrowCurve
+                          style={{
+                            width: "46px",
+                            height: "46px",
+                          }}
+                        />
+                      </Button>
+                      <Button
+                        variant="dark"
+                        onClick={handleNext}
+                        style={{
+                          borderRadius: "50%",
+                          border: "none",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          width: "40px",
+                          height: "40px",
+                          padding: "0",
+                          margin: "0",
+                          marginLeft: "12px",
+                          background: "transparent",
+                        }}
+                      >
+                        <RightArrowCurve
+                          style={{ width: "46px", height: "46px" }}
+                        />
+                      </Button>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
             </Row>
-            <Row
+            {/* <Row
               className="justify-content-center mt-1"
               style={{ padding: "5px" }}
             >
@@ -259,7 +359,7 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
                   <RightArrowCurve style={{ width: "46px", height: "46px" }} />
                 </Button>
               </Col>
-            </Row>
+            </Row> */}
           </Container>
         </div>
       ) : (
