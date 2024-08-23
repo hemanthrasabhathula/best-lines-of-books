@@ -35,7 +35,7 @@ const BookItem = ({ bookslist }: { bookslist: Book[] }) => {
                   aspectRatio: "2/3",
                   objectFit: "cover",
                   cursor: "pointer",
-                }} // Set width to 100%, height to auto, and aspectRatio to maintain a 2:3 ratio for all images
+                }} // Set width to 100%, height to auto, and aspectRatio to maintain a 2:3 ratio for all images -
                 src={book.image}
                 alt={book.title}
               />
