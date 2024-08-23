@@ -433,8 +433,8 @@ const AddBook = () => {
                 className="mt-5"
                 id="image"
                 style={{
-                  width: "100%", // Set a fixed width if needed, e.g., width: "400px"
-                  display: "flex",
+                  // Set a fixed width if needed, e.g., width: "400px"
+                  // display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                 }}
@@ -457,8 +457,7 @@ const AddBook = () => {
               <Row
                 className="mt-4"
                 style={{
-                  width: "100%",
-                  display: "flex",
+                  // display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                 }}
@@ -470,8 +469,12 @@ const AddBook = () => {
                   <div>{`Author: ${formData.author}`}</div>
                   <div>{`ISBN: ${formData.ISBN}`}</div>
                   <div>{`Genre: ${formData.genre}`}</div>
-                  <div>{`Published: ${formData.published}`}</div>
-                  <div>{`Pages: ${formData.pages}`}</div>
+                  <div>{`Published: ${
+                    formData.published === 0 ? "" : formData.published
+                  }`}</div>
+                  <div>{`Pages: ${
+                    formData.pages === 0 ? "" : formData.pages
+                  }`}</div>
                 </Col>
               </Row>
             </Col>
