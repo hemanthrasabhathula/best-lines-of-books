@@ -33,7 +33,13 @@ import { images } from "../../utils/ImagesImporter";
 // ];
 
 const backgrounds = images;
-const BookQuotes = ({ bookId }: { bookId: string }) => {
+const BookQuotes = ({
+  bookId,
+  toggleQuotesLoaded,
+}: {
+  bookId: string;
+  toggleQuotesLoaded: () => void;
+}) => {
   const [bookQuotes, setBookQuotes] = useState<Quotes[] | undefined>();
   const [bookName, setBookName] = useState<string>("");
   const [count, setcount] = useState(0);
@@ -50,6 +56,7 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
         }
 
         const quotes_data = response.data as Quotes[];
+
         setBookQuotes(quotes_data);
         setBookName(quotes_data[0].bookTitle);
       })
@@ -72,6 +79,10 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
       const quotes_data = data.data as Quotes[];
       setBookQuotes(quotes_data);
       setBookName(quotes_data[0].bookTitle);
+      if (quotes_data.length > 0) {
+        console.log(quotes_data.length);
+        toggleQuotesLoaded();
+      }
     }
     console.log("Error", error);
     console.log("isError", isError);

@@ -65,14 +65,26 @@ const BookPage = () => {
     }
   }, [bookId, location.state?.book]);
 
+  const [quotesLoaded, setQuotesLoaded] = useState<boolean>(false);
+
+  const toggleQuotesLoaded = () => {
+    console.log("quotes ", quotesLoaded);
+    setQuotesLoaded(!quotesLoaded);
+  };
+
   return (
     <>
       <>
         {book && !loading && error == null ? (
           <>
             <BookDetails book={book} />
-            {bookId && <BookQuotes bookId={bookId} />}
-            <ScrollUpDown scrollDown={true} />
+            {bookId && (
+              <BookQuotes
+                bookId={bookId}
+                toggleQuotesLoaded={toggleQuotesLoaded}
+              />
+            )}
+            {quotesLoaded && <ScrollUpDown scrollDown={true} />}
             {/* <a
               className={`go-to-down d-flex justify-content-center align-items-center ${
                 scrollActive ? "active" : ""
