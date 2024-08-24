@@ -10,6 +10,7 @@ import BookItem from "../BookItem/BookItem";
 import TypingEffect from "../common/TypingEffect";
 import ToastItem from "../common/ToastItem";
 import { useQuery } from "@tanstack/react-query";
+import { ScrollUpDown } from "../common/ScrollUpDown";
 
 const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -128,6 +129,7 @@ const Dashboard = () => {
               
             )} */}
           </>
+          <ScrollUpDown scrollDown={false}></ScrollUpDown>
         </Container>
       </Fade>
       <ToastItem

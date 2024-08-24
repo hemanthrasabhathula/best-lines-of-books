@@ -9,7 +9,9 @@ const BookItem = ({ bookslist }: { bookslist: Book[] }) => {
   // console.log("BooksList", bookslist);
   return (
     <>
-      <h2 className="mb-3">All Books</h2>
+      {bookslist.length > 1 && <h2 className="mb-3"> All Books</h2>}
+      {bookslist.length === 0 && <h2 className="mb-3"> No Books Found</h2>}
+      {bookslist.length === 1 && <h2 className="mb-3"> Book Found</h2>}
       {bookslist.map((book) => (
         <Col
           xs={4}

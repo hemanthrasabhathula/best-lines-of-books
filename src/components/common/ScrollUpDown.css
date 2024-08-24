@@ -1,0 +1,29 @@
+.go-to-down {
+  position: fixed;
+  border-radius: 50%;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  background: #149ddd;
+  width: 40px;
+  height: 40px;
+  transition: all 0.4s;
+  visibility: hidden;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.go-to-down i {
+  font-size: 28px;
+  color: #fff;
+  line-height: 0;
+}
+
+.go-to-down:hover {
+  background: #2eafec;
+}
+
+.go-to-down.active {
+  visibility: visible;
+  opacity: 1;
+}

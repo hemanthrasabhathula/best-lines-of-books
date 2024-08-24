@@ -7,6 +7,7 @@ import BookDetails from "../BookDetails/BookDetails";
 import BreadcrumbComp from "../common/BreadcrumbComp";
 import ToastItem from "../common/ToastItem";
 import BookQuotes from "../BookQuotes/BookQuotes";
+import { ScrollUpDown } from "../common/ScrollUpDown";
 
 const BookPage = () => {
   const location = useLocation();
@@ -63,6 +64,7 @@ const BookPage = () => {
       setLoading(false);
     }
   }, [bookId, location.state?.book]);
+
   return (
     <>
       <>
@@ -70,6 +72,15 @@ const BookPage = () => {
           <>
             <BookDetails book={book} />
             {bookId && <BookQuotes bookId={bookId} />}
+            <ScrollUpDown scrollDown={true} />
+            {/* <a
+              className={`go-to-down d-flex justify-content-center align-items-center ${
+                scrollActive ? "active" : ""
+              } `}
+              onClick={scrollToDown}
+            >
+              <i className="bi bi-arrow-down-short"></i>
+            </a> */}
           </>
         ) : (
           <Fade appear in={true}>

@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BookProvider } from "./components/Context/BookContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import NavBar from "./components/common/NavBar";
 import BookDetails from "./components/BookDetails/BookDetails";
 import BookPage from "./components/BookPage/BookPage";

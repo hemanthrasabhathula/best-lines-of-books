@@ -11,6 +11,12 @@ import "./BookDetails.css";
 
 const BookDetails = ({ book }: { book: Book }) => {
   const [gradient, setGradient] = useState(generateRandomGradient());
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const toggleIsExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <>
       <Fade appear in={true}>
@@ -76,7 +82,23 @@ const BookDetails = ({ book }: { book: Book }) => {
             >
               <Col lg="8">
                 <div>
-                  {book.description && <b>Description:</b>} {book.description}
+                  <p>
+                    <span className={isExpanded ? "" : "truncate-text"}>
+                      {book.description && <b>Description: </b>}
+                      {book.description}
+                    </span>
+
+                    {isExpanded && (
+                      <p className="show-less" onClick={toggleIsExpanded}>
+                        <i> show less</i>
+                      </p>
+                    )}
+                    {!isExpanded && (
+                      <p className="read-more" onClick={toggleIsExpanded}>
+                        <i> read more</i>
+                      </p>
+                    )}
+                  </p>
                   {/* This book tells the
                   story of two dads, one rich and one poor, and how they teach
                   their sons different and opposing financial philosophies. It
