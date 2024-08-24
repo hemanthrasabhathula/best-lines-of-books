@@ -1,4 +1,4 @@
-.book-lines-bg {
+.book-quotes-bg {
   padding-top: 20px;
   padding-bottom: 20px;
   height: 100dvh;
@@ -15,4 +15,8 @@
   border-radius: 15px; /* Rounded corners */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+}
+
+.button-press-effect:active {
+  transform: scale(0.95);
 }

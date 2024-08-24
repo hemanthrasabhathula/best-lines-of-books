@@ -155,11 +155,19 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
     // };
     //setBackground(generateRandomBackground());
   };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "ArrowRight") {
+      handleNext();
+    } else if (event.key === "ArrowLeft") {
+      handlePrev();
+    }
+  };
   return (
     <>
       {bookQuotes != undefined && bookQuotes.length > 0 ? (
         <div
-          className="book-lines-bg"
+          className="book-quotes-bg"
           style={{
             // position: "relative",
             //overflow: "hidden",
@@ -288,13 +296,16 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
                           border: "none",
                           alignItems: "center",
                           justifyContent: "center",
-                          width: "40px",
-                          height: "40px",
+                          width: "46px",
+                          height: "46px",
                           padding: "0",
                           margin: "0",
-                          marginRight: "12px",
+                          marginRight: "13px",
                           background: "transparent",
+                          transition: "transform 0.1s ease-in-out",
                         }}
+                        onKeyDown={handleKeyPress}
+                        className="button-press-effect"
                       >
                         <LeftArrowCurve
                           style={{
@@ -311,13 +322,16 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
                           border: "none",
                           alignItems: "center",
                           justifyContent: "center",
-                          width: "40px",
-                          height: "40px",
+                          width: "46px",
+                          height: "46px",
                           padding: "0",
                           margin: "0",
-                          marginLeft: "12px",
+                          marginLeft: "13px",
                           background: "transparent",
+                          transition: "transform 0.1s ease-in-out",
                         }}
+                        onKeyDown={handleKeyPress}
+                        className="button-press-effect"
                       >
                         <RightArrowCurve
                           style={{ width: "46px", height: "46px" }}
