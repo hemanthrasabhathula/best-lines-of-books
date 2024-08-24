@@ -2,6 +2,8 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import React from "react";
+import { ReactComponent as Logo } from "../../logo.svg";
 
 const NavBar = (props: { children: React.ReactNode }) => {
   return (
@@ -15,9 +17,31 @@ const NavBar = (props: { children: React.ReactNode }) => {
         style={{ backgroundColor: "transparent !important" }}
       >
         <Container>
-          <Navbar.Brand as={Link} to="/">
-            {`{BLOB}`}{" "}
-            <span style={{ fontSize: "0.8rem" }}>BestLinesOfBooks </span>
+          <Navbar.Brand
+            as={Link}
+            to="/"
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <div style={{ marginRight: "10px" }}>
+              <Logo width={"46px"} height={"46px"} />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <span style={{ display: "block" }} className="comfortaa-font-700">
+                Blob
+              </span>
+              <span
+                className="comfortaa-font"
+                style={{ fontSize: "0.8rem", display: "block" }}
+              >
+                BestLinesOfBooks
+              </span>
+            </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
