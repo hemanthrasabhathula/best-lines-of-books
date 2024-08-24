@@ -8,29 +8,31 @@ import { ReactComponent as RightArrowCurve } from "../../assets/icons/arrow-righ
 import { ReactComponent as LeftArrowCurve } from "../../assets/icons/arrow-left-curve.svg";
 import "./BookQuotes.css";
 import { useQuery } from "@tanstack/react-query";
+import { images } from "../../utils/ImagesImporter";
 
-const backgrounds = [
-  "https://artfiles.alphacoders.com/161/161120.png",
-  "https://images4.alphacoders.com/135/1354110.jpeg",
-  "https://images6.alphacoders.com/137/1371030.png",
-  "https://images8.alphacoders.com/134/1341526.png",
-  "https://picfiles.alphacoders.com/272/272298.jpg",
-  "https://images3.alphacoders.com/133/1337500.png",
-  "https://images.alphacoders.com/135/1353903.png",
-  "https://picfiles.alphacoders.com/297/297690.jpg",
-  "https://images2.alphacoders.com/958/958074.jpg",
-  "https://images2.alphacoders.com/135/1350128.png",
-  "https://images2.alphacoders.com/485/485874.jpg",
-  "https://picfiles.alphacoders.com/285/285560.jpg",
-  "https://images.alphacoders.com/134/1345265.png",
-  "https://picfiles.alphacoders.com/585/585061.jpg",
-  "https://images7.alphacoders.com/135/1358329.png",
-  "https://images.alphacoders.com/137/1370942.png",
-  "https://images8.alphacoders.com/136/1363709.png",
-  "https://images6.alphacoders.com/133/1331485.png",
-  "https://images5.alphacoders.com/133/1337542.png",
-  "https://initiate.alphacoders.com/images/197/cropped-1920-1080-197662.jpg",
-];
+// const backgrounds = [
+//   "https://artfiles.alphacoders.com/161/161120.png",
+//   "https://images4.alphacoders.com/135/1354110.jpeg",
+//   "https://images6.alphacoders.com/137/1371030.png",
+//   "https://images8.alphacoders.com/134/1341526.png",
+//   "https://picfiles.alphacoders.com/272/272298.jpg",
+//   "https://images3.alphacoders.com/133/1337500.png",
+//   "https://images.alphacoders.com/135/1353903.png",
+//   "https://picfiles.alphacoders.com/297/297690.jpg",
+//   "https://images2.alphacoders.com/958/958074.jpg",
+//   "https://images2.alphacoders.com/485/485874.jpg",
+//   "https://picfiles.alphacoders.com/285/285560.jpg",
+//   "https://images.alphacoders.com/134/1345265.png",
+//   "https://images4.alphacoders.com/133/1338265.png",
+//   "https://picfiles.alphacoders.com/585/585061.jpg",
+//   "https://images7.alphacoders.com/135/1358329.png",
+//   "https://images.alphacoders.com/137/1370942.png",
+//   "https://images8.alphacoders.com/136/1363709.png",
+//   "https://images6.alphacoders.com/133/1331485.png",
+//   "https://images5.alphacoders.com/133/1337542.png",
+// ];
+
+const backgrounds = images;
 const BookQuotes = ({ bookId }: { bookId: string }) => {
   const [bookQuotes, setBookQuotes] = useState<Quotes[] | undefined>();
   const [bookName, setBookName] = useState<string>("");
@@ -83,16 +85,32 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
     return backgrounds[Math.floor(Math.random() * backgrounds.length)];
   };
 
-  const [nextBackground, setNextBackground] = useState<string>(
-    generateRandomBackground()
-  );
-  const [currentBackground, setCurrentBackground] = useState<string>(
-    generateRandomBackground()
-  );
+  const [nextBackground, setNextBackground] = useState<string>("");
+  const [currentBackground, setCurrentBackground] = useState<string>("");
+
   useEffect(() => {
+    setCurrentBackground(generateRandomBackground());
+    preLoadNextBackground();
+  }, []);
+
+  const preLoadNextBackground = () => {
     const img = new Image();
-    img.src = nextBackground;
-  }, [nextBackground]);
+    let randomBackground = "";
+    do {
+      randomBackground = generateRandomBackground();
+    } while (randomBackground === currentBackground);
+
+    console.log("Next Background", randomBackground);
+    img.src = randomBackground;
+    img.onload = () => {
+      setNextBackground(randomBackground);
+    };
+  };
+
+  // useEffect(() => {
+  //   const img = new Image();
+  //   img.src = nextBackground;
+  // }, [nextBackground]);
 
   const handleNext = () => {
     if (bookQuotes != undefined && count + 1 > bookQuotes.length - 1) {
@@ -100,16 +118,19 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
     } else {
       setcount(count + 1);
     }
+
+    setCurrentBackground(nextBackground);
+    preLoadNextBackground();
     //changeGradient();
-    const newBackground = generateRandomBackground();
-    const img = new Image();
-    img.src = newBackground;
-    img.onload = () => {
-      setCurrentBackground((prev) =>
-        prev !== newBackground ? newBackground : generateRandomBackground()
-      );
-      setNextBackground(generateRandomBackground());
-    };
+    // const newBackground = generateRandomBackground();
+    // const img = new Image();
+    // img.src = newBackground;
+    // img.onload = () => {
+    //   setCurrentBackground((prev) =>
+    //     prev !== newBackground ? newBackground : generateRandomBackground()
+    //   );
+    //   setNextBackground(generateRandomBackground());
+    // };
 
     //setBackground(generateRandomBackground());
   };
@@ -120,16 +141,18 @@ const BookQuotes = ({ bookId }: { bookId: string }) => {
     } else {
       setcount(count - 1);
     }
+    setCurrentBackground(nextBackground);
+    preLoadNextBackground();
     //changeGradient();
-    const newBackground = generateRandomBackground();
-    const img = new Image();
-    img.src = newBackground;
-    img.onload = () => {
-      setCurrentBackground((prev) =>
-        prev !== newBackground ? newBackground : generateRandomBackground()
-      );
-      setNextBackground(generateRandomBackground());
-    };
+    // const newBackground = generateRandomBackground();
+    // const img = new Image();
+    // img.src = newBackground;
+    // img.onload = () => {
+    //   setCurrentBackground((prev) =>
+    //     prev !== newBackground ? newBackground : generateRandomBackground()
+    //   );
+    //   setNextBackground(generateRandomBackground());
+    // };
     //setBackground(generateRandomBackground());
   };
   return (
